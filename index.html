@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeFall: Learning Protective Control for Humanoid Robots</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SafeFall: Learning Protective Control for Humanoid Robots</h1>
+            <div class="authors">
+                <p>Ziyu Meng<sup>1,2,*</sup>, Tengyu Liu<sup>2,*</sup>, Le Ma<sup>2</sup>, Yingying Wu<sup>2,3</sup>, Ran Song<sup>1,†</sup>, Wei Zhang<sup>1</sup>, Siyuan Huang<sup>2,†</sup></p>
+            </div>
+            <div class="affiliations">
+                <p><sup>1</sup>School of Control Science and Engineering, Shandong University</p>
+                <p><sup>2</sup>National Key Laboratory of General Artificial Intelligence, BIGAI</p>
+                <p><sup>3</sup>Department of Automation, Tsinghua University</p>
+                <p class="equal-contribution"><sup>*</sup>Equal contribution</p>
+                <p class="corresponding"><sup>†</sup>Corresponding authors</p>
+            </div>
+            <div class="paper-links">
+                <a href="#" class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+                        <path d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"/>
+                    </svg>
+                    <span>arXiv</span>
+                </a>
+                <a href="#" class="button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M7 7H17M7 12H17M7 17H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Paper</span>
+                </a>
+                <a href="#" class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                    <span>Video</span>
+                </a>
+                <a href="#" class="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+                        <path d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"/>
+                    </svg>
+                    <span>Code</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="teaser">
+            <div class="teaser-image">
+                <img src="assets/teaser_01.png" alt="Project Teaser" class="teaser-img">
+            </div>
+        </section>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>
+                Bipedal locomotion makes humanoid robots inherently prone to falls, causing catastrophic damage to the expensive sensors, actuators, and structural components of full-scale robots. To address this critical barrier to real-world deployment, we present SafeFall, a framework that learns to predict imminent, unavoidable falls and execute protective maneuvers to minimize hardware damage. SafeFall is designed to operate seamlessly alongside any existing nominal controller, ensuring no interference during normal operation. It combines two synergistic components: a lightweight, GRU-based fall predictor that continuously monitors the robot's state, and a reinforcement learning policy for mitigation.
+            </p>
+            <p>
+                The protective policy remains dormant until the predictor identifies a fall as unavoidable, at which point it activates to take control and execute a damage-minimizing response. This policy is trained with a novel, damage-aware reward function that incorporates the robot's specific structural vulnerabilities, learning to shield critical components like the head and hands while absorbing energy with more robust parts of its body. Validated on a full-scale Unitree G1 humanoid, SafeFall demonstrated significant performance improvements over unprotected falls. It reduced peak contact forces by 68.3%, peak joint torques by 78.4%, and eliminated 99.3% of collisions with vulnerable components. By enabling humanoids to fail safely, SafeFall provides a crucial safety net that allows for more aggressive experiments and accelerates the deployment of these robots in complex, real-world environments.
+            </p>
+        </section>
+
+        <section class="video">
+            <div class="video-container">
+                <video id="teaser" autoplay loop muted playsinline>
+                    <source src="assets/demo_v2_within20MB.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <section class="citation">
+            <div class="citation-container">
+                <h3>Citation</h3>
+                <pre><code>@article{meng2026safefall,
+    title     = {SafeFall: Learning Protective Control for Humanoid Robots},
+    author    = {Meng, Ziyu and Liu, Tengyu and Ma, Le and Wu, Yingying and Song, Ran and Zhang, Wei and Huang, Siyuan},
+    journal   = {arXiv preprint},
+    year      = {2026}
+}</code></pre>
+            </div>
+        </section>
+    </div>
+    </div>
+</body>
+</html>
