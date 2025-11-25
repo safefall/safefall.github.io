@@ -22,9 +22,7 @@
             </div>
             <div class="paper-links">
                 <a href="#" class="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
-                        <path d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"/>
-                    </svg>
+                    <img src="assets/arxiv.svg" alt="arXiv" width="20" height="20">
                     <span>arXiv</span>
                 </a>
                 <a href="#" class="button">
@@ -59,8 +57,6 @@
             <h2>Abstract</h2>
             <p>
                 Bipedal locomotion makes humanoid robots inherently prone to falls, causing catastrophic damage to the expensive sensors, actuators, and structural components of full-scale robots. To address this critical barrier to real-world deployment, we present SafeFall, a framework that learns to predict imminent, unavoidable falls and execute protective maneuvers to minimize hardware damage. SafeFall is designed to operate seamlessly alongside any existing nominal controller, ensuring no interference during normal operation. It combines two synergistic components: a lightweight, GRU-based fall predictor that continuously monitors the robot's state, and a reinforcement learning policy for mitigation.
-            </p>
-            <p>
                 The protective policy remains dormant until the predictor identifies a fall as unavoidable, at which point it activates to take control and execute a damage-minimizing response. This policy is trained with a novel, damage-aware reward function that incorporates the robot's specific structural vulnerabilities, learning to shield critical components like the head and hands while absorbing energy with more robust parts of its body. Validated on a full-scale Unitree G1 humanoid, SafeFall demonstrated significant performance improvements over unprotected falls. It reduced peak contact forces by 68.3%, peak joint torques by 78.4%, and eliminated 99.3% of collisions with vulnerable components. By enabling humanoids to fail safely, SafeFall provides a crucial safety net that allows for more aggressive experiments and accelerates the deployment of these robots in complex, real-world environments.
             </p>
         </section>
@@ -70,21 +66,54 @@
                 <video id="teaser" autoplay loop muted playsinline>
                     <source src="assets/demo_v2_within20MB.mp4" type="video/mp4">
                 </video>
+
+                <!-- Custom video controls -->
+                <div class="video-controls" id="video-controls" aria-label="Video controls">
+                    <button id="play-pause" class="vc-btn" aria-label="Play">▶</button>
+                    <div class="time">
+                        <span id="current-time">0:00</span>
+                        <span>/</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                    <input id="progress" class="progress" type="range" min="0" max="100" value="0" aria-label="Seek" />
+                    <input id="volume" class="volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
+                    <button id="fullscreen" class="vc-btn" aria-label="Fullscreen">⤢</button>
+                </div>
             </div>
         </section>
 
         <section class="citation">
             <div class="citation-container">
                 <h3>Citation</h3>
-                <pre><code>@article{meng2026safefall,
+                <div class="citation-content">
+                    <pre><code>@article{meng2026safefall,
     title     = {SafeFall: Learning Protective Control for Humanoid Robots},
-    author    = {Meng, Ziyu and Liu, Tengyu and Ma, Le and Wu, Yingying and Song, Ran and Zhang, Wei and Huang, Siyuan},
+    author    = {Ziyu Meng and Tengyu Liu and Le Ma and Yingying Wu and Ran Song and Wei Zhang and Siyuan Huang},
     journal   = {arXiv preprint},
     year      = {2026}
 }</code></pre>
+                    <button class="copy-button" onclick="copyToClipboard()" title="Copy to clipboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
+            <script>
+                function copyToClipboard() {
+                    const text = document.querySelector('.citation-content pre code').textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const button = document.querySelector('.copy-button');
+                        button.classList.add('copied');
+                        setTimeout(() => button.classList.remove('copied'), 2000);
+                    });
+                }
+            </script>
         </section>
     </div>
     </div>
-</body>
+        </section>
+            <script src="video-controls.js"></script>
+        </body>
 </html>
