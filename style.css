@@ -2,8 +2,10 @@
 * {
     margin: 0;
     padding: 0;
-    bo.teaser {
-    margi/* Teaser section */
+    box-sizing: border-box;
+}
+
+/* Teaser section */
 .teaser {
     margin-bottom: 3rem;
     text-align: center;
@@ -24,25 +26,6 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     display: block;
     margin: 0 auto;
-}    text-align: center;
-}
-
-.teaser-image {
-    max-width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-}
-
-.teaser-img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    display: block;
-    margin: 0 auto;
-}r-box;
 }
 
 body {
@@ -79,6 +62,17 @@ h1 {
 .authors sup {
     font-size: 0.8rem;
     font-weight: normal;
+}
+
+.authors a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.authors a:hover {
+    color: #0052a3;
+    text-decoration: underline;
 }
 
 .affiliations {
